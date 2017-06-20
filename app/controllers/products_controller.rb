@@ -4,7 +4,9 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    # @products = Product.order(:name).page params[:page]
+    @products = Product.all.page(params[:page])#.per(1)
+    #@users = Product.order(:name).page params[:page]
   end
 
   # GET /products/1
