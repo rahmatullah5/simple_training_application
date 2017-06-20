@@ -1,12 +1,16 @@
-= simple_form_for(@product) do |f|
-  = f.error_notification
+= simple_form_for @product, html: { class: "form-horizontal" }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  = f.input :name
+  = f.input :description
+  = f.input :price
 
-  .form-inputs
-    = f.input :name
-    = f.input :description
-    = f.input :image
-    = f.input :price
-    = f.input :decimal
-
-  .form-actions
-    = f.button :submit
+  
+  h3 Product Image
+  #product_images
+    = f.simple_fields_for :product_images do |image|
+      = render 'product_image_fields', f: image    
+    .links
+      = link_to_add_association 'add task', f, :product_images
+    
+    .col-sm-offset-3.col-sm-9
+      = f.submit nil, class: 'btn btn-primary'
+      = link_to t('.cancel', default: t("helpers.links.cancel")), products_path, class: 'btn btn-default'
