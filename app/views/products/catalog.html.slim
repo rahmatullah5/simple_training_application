@@ -31,8 +31,12 @@
           .thumbnail
             - product.product_images.each do |x|
               = image_tag (x.image_url(:thumb))
+              - break
             .caption
-              h4.pull-right $ = product.price
+              h4.pull-right = "$ #{product.id}"
+                / | $  
+                / = product.id
+                / | Test
               h4
                 = product.name
               p
