@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: :catalog
   # GET /products
   # GET /products.json
   def index
@@ -12,6 +12,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+  end
+
+  def catalog
+    @products = Product.all.page(params[:page])
   end
 
   # GET /products/new
