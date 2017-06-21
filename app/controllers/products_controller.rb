@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
+  #load_and_authorize_resource
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :catalog
+
   # GET /products
   # GET /products.json
   def index
@@ -13,7 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
   end
-
+  #
   def catalog
     @products = Product.all.page(params[:page])
   end
@@ -25,6 +27,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    # unless current_user.role.eql? "basic"
+    #   redirect_to products_path, notice: "You Can'n Acces This Page"
+    # end
   end
 
   # POST /products

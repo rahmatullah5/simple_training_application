@@ -71,6 +71,8 @@ GEM
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -112,6 +114,7 @@ GEM
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
     concurrent-ruby (1.0.5)
+    debug_inspector (0.0.3)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -332,10 +335,11 @@ DEPENDENCIES
   activeadmin!
   bcrypt (~> 3.1.7)
   better_errors
+  binding_of_caller
   bootstrap-sass (~> 3.3.6)
   bootstrap-sass-extras
   byebug
-  cancancan (~> 1.10)
+  cancancan
   capybara (~> 2.13)
   carrierwave (~> 1.0)
   ckeditor
