@@ -48,13 +48,14 @@ gem 'slim-rails'
 gem "cocoon"
 gem "mail"
 gem "figaro"
-gem 'mailgun_rails'
+#gem 'mailgun_rails'
 gem 'kaminari'
 gem 'ckeditor'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_skin'
 gem 'cancancan'
 gem 'html2slim'
+gem 'mailgun-ruby', '~>1.1.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
