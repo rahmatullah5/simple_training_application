@@ -71,10 +71,20 @@
         h2
           | Categories
         ul.cate
+          .row
+            .col-md-8
+               h4 Product Name
+            .col-md-4
+               h4 Quantity
+          .row
+            .col-md-8
+               b Product Name
+            .col-md-4
+               b Quantity
           li
             a[href="products.html"]
               i.fa.fa-arrow-right[aria-hidden="true"]
-              | Fruits And Vegetables
+              | CHECKOUT
         
     .col-md-8.products-right
       .products-right-grid
@@ -87,316 +97,69 @@
               option[value="null"]
             
           .clearfix
-
+      
       .agile_top_brands_grids
+      - @products.each do |product|    
         .col-md-4.top_brand_left
           .hover14.column
             .agile_top_brand_left_grid
               .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
+                = image_tag("offer.png" , class: "img.img-responsive" , alt: "Offer")
               .agile_top_brand_left_grid1
                 figure
                   .snipcart-item.block
                     .snipcart-thumb
                       a[href="single.html"]
-                        img[title=" " alt=" " src="images/pf4.png"]
+                        = image_tag(product.product_images[0].image_url(:thumb))
                       p
-                        | Sampann-toor-dal
+                        = product.name
                       h4
-                        | $35.99 
-                        span
-                          | $55.00
+                        = number_to_currency(product.price , unit: "Rp. ")
+                        / span
+                        /   | $45.00
                     .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="Fortune Sunflower Oil"]
-                          input[type="hidden" name="amount" value="35.99"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .col-md-4.top_brand_left
-          .hover14.column
-            .agile_top_brand_left_grid
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid1
-                figure
-                  .snipcart-item.block
-                    .snipcart-thumb
-                      a[href="single.html"]
-                        img[title=" " alt=" " src="images/bv3.png"]
-                      p
-                        | Parryss-sugar
-                      h4
-                        | $30.99 
-                        span
-                          | $45.00
-                    .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="basmati rise"]
-                          input[type="hidden" name="amount" value="30.99"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .col-md-4.top_brand_left
-          .hover14.column
-            .agile_top_brand_left_grid
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid1
-                figure
-                  .snipcart-item.block
-                    .snipcart-thumb
-                      a[href="single.html"]
-                        img.img-responsive[src="images/16.png" alt=" "]
-                      p
-                        | Saffola-gold
-                      h4
-                        | $80.99 
-                        span
-                          | $105.00
-                    .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="Pepsi soft drink"]
-                          input[type="hidden" name="amount" value="80.00"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .clearfix
-
+                      = button_to 'Add to Cart', line_items_path(product_id: product) 
+                      / form[action="#" method="post"]
+                      /   fieldset
+                      /     input[type="hidden" name="cmd" value="_cart"]
+                      /     input[type="hidden" name="add" value="1"]
+                      /     input[type="hidden" name="business" value=" "]
+                      /     input[type="hidden" name="item_name" value="basmati rise"]
+                      /     input[type="hidden" name="amount" value="30.99"]
+                      /     input[type="hidden" name="discount_amount" value="1.00"]
+                      /     input[type="hidden" name="currency_code" value="USD"]
+                      /     input[type="hidden" name="return" value=" "]
+                      /     input[type="hidden" name="cancel_return" value=" "]
+                      /     input.button[type="submit" name="submit" value="Add to cart"]
       .agile_top_brands_grids
+      - @products.each do |product|    
         .col-md-4.top_brand_left
-          .hover14.column
-            .agile_top_brand_left_grid
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid1
-                figure
-                  .snipcart-item.block
-                    .snipcart-thumb
-                      a[href="single.html"]
-                        img[title=" " alt=" " src="images/hh4.png"]
-                      p
-                        | Sampann-toor-dal
-                      h4
-                        | $35.99 
-                        span
-                          | $55.00
-                    .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="Fortune Sunflower Oil"]
-                          input[type="hidden" name="amount" value="35.99"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .col-md-4.top_brand_left
-          .hover14.column
-            .agile_top_brand_left_grid
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid1
-                figure
-                  .snipcart-item.block
-                    .snipcart-thumb
-                      a[href="single.html"]
-                        img[title=" " alt=" " src="images/gu5.png"]
-                      p
-                        | Parryss-sugar
-                      h4
-                        | $30.99 
-                        span
-                          | $45.00
-                    .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="basmati rise"]
-                          input[type="hidden" name="amount" value="30.99"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .col-md-4.top_brand_left
-          .hover14.column
-            .agile_top_brand_left_grid
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid1
-                figure
-                  .snipcart-item.block
-                    .snipcart-thumb
-                      a[href="single.html"]
-                        img.img-responsive[src="images/pc6.png" alt=" "]
-                      p
-                        | Saffola-gold
-                      h4
-                        | $80.99 
-                        span
-                          | $105.00
-                    .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="Pepsi soft drink"]
-                          input[type="hidden" name="amount" value="80.00"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .clearfix
-
-      .agile_top_brands_grids
-        .col-md-4.top_brand_left
-          .hover14.column
-            .agile_top_brand_left_grid
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid1
-                figure
-                  .snipcart-item.block
-                    .snipcart-thumb
-                      a[href="single.html"]
-                        img[title=" " alt=" " src="images/gu4.png"]
-                      p
-                        | Sampann-toor-dal
-                      h4
-                        | $35.99 
-                        span
-                          | $55.00
-                    .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="Fortune Sunflower Oil"]
-                          input[type="hidden" name="amount" value="35.99"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .col-md-4.top_brand_left
-          .hover14.column
-            .agile_top_brand_left_grid
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid1
-                figure
-                  .snipcart-item.block
-                    .snipcart-thumb
-                      a[href="single.html"]
-                        img[title=" " alt=" " src="images/5.png"]
-                      p
-                        | Parryss-sugar
-                      h4
-                        | $30.99 
-                        span
-                          | $45.00
-                    .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="basmati rise"]
-                          input[type="hidden" name="amount" value="30.99"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .col-md-4.top_brand_left
-          .hover14.column
-            .agile_top_brand_left_grid
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid_pos
-                img.img-responsive[src="images/offer.png" alt=" "]
-              .agile_top_brand_left_grid1
-                figure
-                  .snipcart-item.block
-                    .snipcart-thumb
-                      a[href="single.html"]
-                        img.img-responsive[src="images/6.png" alt=" "]
-                      p
-                        | Saffola-gold
-                      h4
-                        | $80.99 
-                        span
-                          | $105.00
-                    .snipcart-details.top_brand_home_details
-                      form[action="#" method="post"]
-                        fieldset
-                          input[type="hidden" name="cmd" value="_cart"]
-                          input[type="hidden" name="add" value="1"]
-                          input[type="hidden" name="business" value=" "]
-                          input[type="hidden" name="item_name" value="Pepsi soft drink"]
-                          input[type="hidden" name="amount" value="80.00"]
-                          input[type="hidden" name="discount_amount" value="1.00"]
-                          input[type="hidden" name="currency_code" value="USD"]
-                          input[type="hidden" name="return" value=" "]
-                          input[type="hidden" name="cancel_return" value=" "]
-                          input.button[type="submit" name="submit" value="Add to cart"]
-        .clearfix
-
+        .clearfix  
       nav.numbering
-        ul.pagination.paging
-          li
-            a[href="#" aria-label="Previous"]
-              span[aria-hidden="true"]
-                | «
-          li.active
-            a[href="#"]
-              | 1
-              span.sr-only
-                | (current)
-          li
-            a[href="#"]
-              | 2
-          li
-            a[href="#"]
-              | 3
-          li
-            a[href="#"]
-              | 4
-          li
-            a[href="#"]
-              | 5
-          li
-            a[href="#" aria-label="Next"]
-              span[aria-hidden="true"]
-                | »
+        = paginate @products
+        / ul.pagination.paging
+        /   li
+        /     a[href="#" aria-label="Previous"]
+        /       span[aria-hidden="true"]
+        /         | «
+        /   li.active
+        /     a[href="#"]
+        /       | 1
+        /       span.sr-only
+        /         | (current)
+        /   li
+        /     a[href="#"]
+        /       | 2
+        /   li
+        /     a[href="#"]
+        /       | 3
+        /   li
+        /     a[href="#"]
+        /       | 4
+        /   li
+        /     a[href="#"]
+        /       | 5
+        /   li
+        /     a[href="#" aria-label="Next"]
+        /       span[aria-hidden="true"]
+        /         | »
