@@ -1,10 +1,28 @@
-h2
-  | Log in
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, "Log in"
-= render "users/shared/links"
+
+.login
+  .container
+    h2
+      | Login Form
+    .login-form-grids.animated.wow.slideInUp[data-wow-delay=".5s"]
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-inputs  
+          = f.input :email, required: false, autofocus: true
+          = f.input :password, required: false
+          = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        .form-actions
+          = f.button :submit, "Log in"
+          h4
+            | For New People
+          p     
+            = render "users/shared/links"
+    
+/ h2
+/   | Log in
+/ = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+/   .form-inputs
+/     = f.input :email, required: false, autofocus: true
+/     = f.input :password, required: false
+/     = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+/   .form-actions
+/     = f.button :submit, "Log in"
+/ = render "users/shared/links"
