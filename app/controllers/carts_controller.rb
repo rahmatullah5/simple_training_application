@@ -2,7 +2,7 @@ class CartsController < InheritedResources::Base
   include CurrentCart
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-
+  before_action :authenticate_user!,
   def destroy
     @cart.destroy if @cart.id == session[:cart_id]
     session[:cart_id] = nil

@@ -52,33 +52,36 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for mailgun
-  # ActionMailer::Base.smtp_settings = {
-  #   :port           => 587,
-  #   :address        => "smtp.mailgun.org",
-  #   :domain         => ENV['domain'],
-  #   :user_name      => ENV['username'],
-  #   :password       => ENV['password'],
-  #   :authentication => :plain,
+  ActionMailer::Base.smtp_settings = {
+    :port           => 587,
+    :address        => "smtp.mailgun.org",
+    :domain         => ENV['domain'],
+    :user_name      => ENV['username'],
+    :password       => ENV['password'],
+    :authentication => :plain,
+  }
+  config.action_mailer.perform_deliveries = true
+
+  # GMAIL
+  # config.action_mailer.smtp_settings = {
+  #   :address              => "smtp.gmail.com",
+  #   :port                 => 587,
+  #   :user_name            => ENV['gmail_username'],
+  #   :password             => ENV['gmail_password'],
+  #   :authentication       => "plain",
+  #   :enable_starttls_auto => true
   # }
 
-  config.action_mailer.smtp_settings = {
- :address              => "smtp.gmail.com",
- :port                 => 587,
- :user_name            => ENV['gmail_username'],
- :password             => ENV['gmail_password'],
- :authentication       => "plain",
-:enable_starttls_auto => true
-}
-
-config.after_initialize do
-  ActiveMerchant::Billing::Base.mode = :test
-  paypal_options = {
-    login: "Rahmatthea5-facilitator_api1.gmail.com",
-    password: "2NFPGK58AA7YDCAH",
-    signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31AD7pqGsFaZQ663yBOAkHlLDqBMsV"
-  }
-  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-end
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: "Rahmatthea5-facilitator_api1.gmail.com",
+      password: "2NFPGK58AA7YDCAH",
+      signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31AD7pqGsFaZQ663yBOAkHlLDqBMsV"
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

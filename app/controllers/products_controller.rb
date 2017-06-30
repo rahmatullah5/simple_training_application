@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   include CurrentCart
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :catalog
-  # before_action :authenticate_user!, except: :catalog
+  before_action :authenticate_user!, except: :catalog
   before_action :set_cart, only: [:show, :edit, :update, :destroy , :catalog , :checkout , :checkout_form]
 
   # GET /products
@@ -65,7 +65,8 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        # format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to admin_product_path(@product), notice: 'Product was successfully created.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -96,10 +97,10 @@ class ProductsController < ApplicationController
   end
 
   def redirect_user()
-      user = User.new
-      if user.present?
+    user = User.new
+    if user.present?
       redirect_to root_path, notice: "You Can'n Acces This Page"
-      end
+    end
     # unless current_user.role.eql? "basic"
     #
     # end

@@ -2,13 +2,19 @@ class OrdersController < InheritedResources::Base
   include CurrentCart
   before_action :set_cart
   before_action :ensure_cart_isnt_empty, only: :new
+  before_action :authenticate_user!,
 
+  def index
+  end
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
     # respond_to do |format|
     if @order.save
-      redirect_to @order.paypal_url(orders_path(@order))
+      # UserMailer.UserMailerView(@cart,@order)
+      UserMailer.UserMailerView(@order,@cart,current_user.email).deliver
+      #redirect_to @order.paypal_url(orders_path(@order))
+      redirect_to root_path
       # Cart.destroy(session[:cart_id])
       # session[:cart_id] = nil
       # format.html { redirect_to root_path, notice:

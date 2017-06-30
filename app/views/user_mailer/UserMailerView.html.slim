@@ -1,2 +1,89 @@
-h1 User#UserMailerView
-/ p = @greeting + ", find me in app/views/user_mailer/UserMailerView.html.slim"
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    title= content_for?(:title) ? yield(:title) : "SimpleTrainingApplication"
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"
+    = stylesheet_link_tag "application", media: "all"
+    / = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    javascript:
+       addEventListener("load", function() { 
+       setTimeout(hideURLbar, 0); }, false);
+       function hideURLbar(){ window.scrollTo(0,1); 
+      }
+    = stylesheet_link_tag "bootstrap.css" 
+    = stylesheet_link_tag "style.css" 
+    
+    = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+    = javascript_include_tag "jquery-1.11.1.min.js" 
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" 
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" 
+    = javascript_include_tag "move-top.js" 
+    = javascript_include_tag "easing.js" 
+    javascript:
+       jQuery(document).ready(function($) {
+      	 $(".scroll").click(function(event){
+      		 event.preventDefault();
+      		 $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+      	 });
+       });
+    = javascript_include_tag "application"
+    = javascript_include_tag Ckeditor.cdn_url
+  body
+    .container
+      .row
+        .col-md-12
+        .checkout
+          .container
+            h1
+              | Hi
+              = @order.name
+              | Your Order Will Be Sent To 
+              = @order.address
+              | We'll Contact You Soon on
+              = @order.telephone
+            br
+            h2
+              | Your shopping cart contains: 
+              span
+                - @i = 1
+                = @cart.total_product 
+                |  Product
+            .checkout-right
+              table.timetable_sub
+                thead
+                  tr
+                    th
+                      | No.
+                    th
+                      | Product Name
+                    th
+                      | Quantity
+                    th
+                      | Price
+                    th
+                      | Total Price
+                    
+                - @cart.line_items.each do |item|      
+                  tr.rem1
+                    td.invert
+                      = @i
+                      -  @i+=1
+                    td.invert-image
+                      b 
+                        = item.product.name
+                    td.invert
+                      .quantity
+                        .quantity-select
+                          .entry.value
+                            span
+                              = item.quantity 
+                    td.invert
+                       = number_to_currency(item.product.price , unit: "Rp. ")
+                    td.invert
+                       = number_to_currency(item.total_price , unit: "Rp. ")
+          
+
+                    
