@@ -63,6 +63,9 @@ gem 'activemerchant'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+
+#SLug
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
