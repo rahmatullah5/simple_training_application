@@ -1,0 +1,126 @@
+/ h1 Listing orders
+/ 
+/ table
+/   thead
+/     tr
+/       th Name
+/       th Address
+/       th Email
+/       th Telephone
+/       th User
+/       th Cart
+/       th
+/       th
+/       th
+/ 
+/   tbody
+/     - @orders.each do |order|
+/       tr
+/         td = order.name
+/         td = order.address
+/         td = order.email
+/         td = order.telephone
+/         td = order.user
+/         td = order.cart
+/         td = link_to 'Show', order
+/         td = link_to 'Edit', edit_order_path(order)
+/         td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete
+/ 
+/ br
+/ 
+/ = link_to 'New Order', new_order_path
+.checkout
+  .container
+    h2
+      | Your shopping cart contains: 
+      span
+        - @i = 1
+        = @cart.total_product 
+        |  Product
+    .checkout-right
+      table.timetable_sub
+        thead
+          tr
+            th
+              | SL No.
+            th
+              | Product Name
+            th
+              | Quality
+            th
+              | Price
+            th
+              | Total Price
+            th
+              | Remove
+        - @cart.line_items.each do |item|      
+          tr.rem1
+            td.invert
+              = @i
+              -  @i+=1
+            td.invert-image
+              = image_tag(item.product.product_images[0].image_url(:small_thumb) , class: "img.img-responsive")
+              b 
+                = item.product.name
+            td.invert
+              .quantity
+                .quantity-select
+                  .entry.value-minus
+                    |  
+                  .entry.value
+                    span
+                      = item.quantity 
+                  .entry.value-plus.active
+                    |  
+            td.invert
+              = number_to_currency(item.product.price , unit: "Rp. ")
+            td.invert
+              = number_to_currency(item.total_price , unit: "Rp. ")
+            td.invert
+              .rem
+                .close1
+
+              script
+                | $(document).ready(function(c) { $('.close1').on('click', function(c){ $('.rem1').fadeOut('slow', function(c){ $('.rem1').remove(); }); }); }); 
+        script
+          |  $('.value-plus').on('click', function(){ var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1; divUpd.text(newVal); }); $('.value-minus').on('click', function(){ var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1; if(newVal>=1) divUpd.text(newVal); }); 
+    .checkout-left
+      .checkout-left-basket
+        h4
+          = link_to " Continue to Payment" , new_order_url
+        / ul
+        /   li
+        /     | Product1 
+        /     i
+        /       | -
+        /     span
+        /       | $15.00 
+        /   li
+        /     | Product2 
+        /     i
+        /       | -
+        /     span
+        /       | $25.00 
+        /   li
+        /     | Product3 
+        /     i
+        /       | -
+        /     span
+        /       | $29.00 
+        /   li
+        /     | Total Service Charges 
+        /     i
+        /       | -
+        /     span
+        /       | $15.00
+        /   li
+        /     | Total 
+        /     i
+        /       | -
+        /     span
+        /       | $84.00
+      .checkout-right-basket
+        a[href="single.html"]
+          span.glyphicon.glyphicon-menu-left[aria-hidden="true"]
+          | Continue Shopping
+      .clearfix

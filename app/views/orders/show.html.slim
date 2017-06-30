@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @order.name
+p
+  strong Address:
+  = @order.address
+p
+  strong Email:
+  = @order.email
+p
+  strong Telephone:
+  = @order.telephone
+p
+  strong User:
+  = @order.user
+p
+  strong Cart:
+  = @order.cart
+
+= link_to 'Edit', edit_order_path(@order)
+'  |
+= link_to 'Back', orders_path

@@ -1,13 +1,16 @@
 class ProductsController < ApplicationController
   #load_and_authorize_resource
+  include CurrentCart
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :catalog
-  before_action :authenticate_user!, except: :catalog
+  # before_action :authenticate_user!, except: :catalog
+  before_action :set_cart, only: [:show, :edit, :update, :destroy , :catalog , :checkout , :checkout_form]
 
   # GET /products
   # GET /products.json
   def index
     # @products = Product.order(:name).page params[:page]
+    #@cart = Cart.find(session[:cart_id])
     @products = Product.all.page(params[:page])#.per(1)
     #@users = Product.order(:name).page params[:page]
   end
@@ -18,10 +21,17 @@ class ProductsController < ApplicationController
   end
   #
   def catalog
+    #@cart = current_cart
+    #@cart = Cart.find(session[:cart_id])
     @user = current_user
     @products = Product.all.page(params[:page])
   end
 
+  def checkout
+  end
+
+  def checkout_form
+  end
   # GET /products/new
   def new
     redirect_user
@@ -94,4 +104,6 @@ class ProductsController < ApplicationController
     #
     # end
   end
+
+
 end

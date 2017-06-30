@@ -1,0 +1,45 @@
+/ = simple_form_for(@order) do |f|
+/   = f.error_notification
+/ 
+/   .form-inputs
+/     = f.input :name
+/     = f.input :address
+/     = f.input :email
+/     = f.input :telephone
+/     = f.association :user
+/     = f.association :cart
+/ 
+/   .form-actions
+/     = f.button :submit
+.register
+  .container
+    h2
+      | Payment Information
+    .login-form-grids
+      h5
+        | Your Profile Information
+      / form[action="#" method="post"]      
+      = simple_form_for(@order) do |f|
+        / input[type="text" placeholder="First Name..." required=" "]
+        / input[type="text" placeholder="Last Name..." required=" "]
+        = f.input :name , class: "form-control" , required: true
+        = f.input :address, class: "form-control" , required: true
+        = f.input :email, class: "form-control" , input_html: {value: current_user.email , disabled: true}
+        = f.input :email, label: false , as: :hidden,  input_html: {value: current_user.email}
+        = f.input :telephone, class: "form-control" , required: true
+        = f.input :user_id, label: false , as: :hidden,  input_html: {value: current_user.id}
+        = f.input :cart_id, label: false , as: :hidden,  input_html: {value: @cart.id}
+        = f.button :submit
+      .register-check-box
+        .check
+          label.checkbox
+        / = f.button :submit
+            / input[type="checkbox" name="checkbox"]
+            i
+
+            | Subscribe to Newsletter
+    
+        / input[type="submit" value="Register"]
+    .register-home
+      a[href="index.html"]
+        | Home

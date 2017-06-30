@@ -69,23 +69,51 @@
     .col-md-4.products-left
       .categories
         h2
-          | Categories
-        ul.cate
-          .row
-            .col-md-8
-               h4 Product Name
-            .col-md-4
-               h4 Quantity
-          .row
-            .col-md-8
-               b Product Name
-            .col-md-4
-               b Quantity
-          li
-            a[href="products.html"]
-              i.fa.fa-arrow-right[aria-hidden="true"]
-              | CHECKOUT
-        
+          | Your Cart
+        - unless @cart.line_items.empty?  
+          ul.cate
+            li
+              .row
+                .col-md-6
+                   h4 Product Name
+                .col-md-6
+                   h4 Quantity
+              - i=1      
+              - @cart.line_items.each do |item|
+                .row 
+                  .col-md-6
+                     h4 
+                     = item.product.name
+                  .col-md-6
+                     h4 
+                     = number_to_currency(item.total_price , unit: "Rp. ")
+                     |  *
+                     = item.quantity 
+            li 
+              .row
+                .col-md-2
+                   h4 Total
+                .col-md-6
+                   h4 
+                   = number_to_currency(@cart.total_price , unit: "Rp. ")
+                .col-md-4
+                   h4 
+                   = @cart.total_product 
+                   |  Product    
+            li
+              .row
+                .col-md-6
+                  = link_to "Checkout" , orders_url  , class: "btn btn-primary"
+                .col-md-6
+                  = button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' }
+        - else
+          ul.cate
+            li
+              .row
+                .col-md-12
+                  h3 
+                    center
+                      Your Cart Is Empty Please Pick Some Products !
     .col-md-8.products-right
       .products-right-grid
         .products-right-grids
