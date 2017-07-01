@@ -44,7 +44,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-sass-extras'
 gem 'simple_form'
 gem 'letter_opener'
-gem 'slim-rails'
+gem 'slim-rails', '3.1.1'
 gem "cocoon"
 gem "mail"
 gem "figaro"
@@ -70,6 +70,10 @@ gem 'friendly_id' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 
 #Money Exchanger
 gem 'money'
+
+#Cloudinary
+gem 'cloudinary'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

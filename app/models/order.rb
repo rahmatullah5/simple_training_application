@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   has_many :line_items, dependent: :destroy
   serialize :notification_params, Hash
   require 'money'
-  Money.add_rate("USD", "IDR", 1.24515)
+  Money.add_rate("USD", "IDR", 13250)
   def paypal_url(cart,order,return_path)
     @cart = cart
     @order = order
@@ -13,7 +13,7 @@ class Order < ApplicationRecord
       cmd: "_xclick",
       upload: 1,
       return: "#{Rails.application.secrets.app_host}",
-      invoice: id,
+      invoice: "#{@order.id}",
       amount: "#{@total}",
       item_name: "Please Check Your Email For Detail All Of Your Order",
       item_number: "#{@cart.total_product}",
