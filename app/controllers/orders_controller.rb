@@ -13,8 +13,8 @@ class OrdersController < InheritedResources::Base
     if @order.save
       # UserMailer.UserMailerView(@cart,@order)
       UserMailer.UserMailerView(@order,@cart,current_user.email).deliver
-      #redirect_to @order.paypal_url(orders_path(@order))
-      redirect_to root_path
+      redirect_to @order.paypal_url(@cart,@order,orders_path(@order))
+      #redirect_to root_path
       # Cart.destroy(session[:cart_id])
       # session[:cart_id] = nil
       # format.html { redirect_to root_path, notice:

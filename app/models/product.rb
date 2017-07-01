@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: [:slugged, :finders]
   has_many :product_images, dependent: :destroy
   has_many :line_items
   before_destroy :ensure_not_referenced_by_any_line_item

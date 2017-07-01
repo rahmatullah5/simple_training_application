@@ -20,8 +20,8 @@ html lang="en"
     
     = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
     = javascript_include_tag "jquery-1.11.1.min.js" 
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" 
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" 
+    / = stylesheet_link_tag "//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" 
+    / = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic" 
     = javascript_include_tag "move-top.js" 
     = javascript_include_tag "easing.js" 
     javascript:
@@ -384,15 +384,15 @@ html lang="en"
         /! top-header and slider
         /! here stars scrolling icon
         javascript:
-           $(document).ready(function() {
-          		 var defaults = {
-          		 containerID: 'toTop', // fading element id
-          		 containerHoverID: 'toTopHover', // fading element hover id
-          		 scrollSpeed: 1200,
-          		 easingType: 'linear'
-          		 };					
-          	 $().UItoTop({ easingType: 'easeOutQuart' });
-          	 });
+         $(document).ready(function() {
+        		 var defaults = {
+        		 containerID: 'toTop', // fading element id
+        		 containerHoverID: 'toTopHover', // fading element hover id
+        		 scrollSpeed: 1200,
+        		 easingType: 'linear'
+        		 };					
+        	 $().UItoTop({ easingType: 'easeOutQuart' });
+        	 });
         /! //here ends scrolling icon
         = javascript_include_tag "minicart.min.js" 
         javascript:
@@ -406,10 +406,10 @@ html lang="en"
         = javascript_include_tag "skdslider.min.js" 
         = stylesheet_link_tag "skdslider.css" 
         javascript:
-           jQuery(document).ready(function(){
-          	 jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
-          	 jQuery('#responsive').change(function(){
-          	   $('#responsive_wrapper').width(jQuery(this).val());
-          	 });
-           });
+         jQuery(document).ready(function(){
+        	 jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
+        	 jQuery('#responsive').change(function(){
+        	   $('#responsive_wrapper').width(jQuery(this).val());
+        	 });
+         });
         /! //main slider-banner

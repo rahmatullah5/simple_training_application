@@ -2,20 +2,35 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :line_items, dependent: :destroy
   serialize :notification_params, Hash
-
-  def paypal_url(return_path)
+  require 'money'
+  Money.add_rate("USD", "IDR", 1.24515)
+  def paypal_url(cart,order,return_path)
+    @cart = cart
+    @order = order
+    @total = Money.us_dollar(@cart.total_price).exchange_to("IDR")
     values = {
       business: "merchant@rahmat.com",
       cmd: "_xclick",
       upload: 1,
-      return: "#{Rails.application.secrets.app_host}#{return_path}",
+      return: "#{Rails.application.secrets.app_host}",
       invoice: id,
-      amount: 1,
-      item_name: "Rahmat Books",
-      item_number: "10",
-      quantity: '1',
+      amount: "#{@total}",
+      item_name: "Please Check Your Email For Detail All Of Your Order",
+      item_number: "#{@cart.total_product}",
+      quantity: "1",
       notify_url: "#{Rails.application.secrets.app_host}/hook"
     }
+    # @i=1
+    # @cart.line_items.each do |item|
+    #   values = values.merge(
+    #     "amount_#{@i}": item.total_price,
+    #     "quantity_#{@i}": item.quantity,
+    #     "item_name_#{@i}": item.product.name,
+    #     "item_number_#{@i}": item.id
+    #   )
+    #   @i+=1
+    #
+    # end
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
   def total_price
