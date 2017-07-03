@@ -33,8 +33,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'jquery-rails'
-gem 'carrierwave', '~> 1.0'
+
+#Image Editor & Uploder
+gem 'carrierwave', '~> 0.8.0'
 gem 'mini_magick'
+gem 'carrierwave-crop'
+
+
 gem 'devise'
 gem 'bcrypt', '~> 3.1.7'
 gem 'better_errors' #gem "binding_of_caller" More Advance

@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
+//= require jquery.jcrop
 //= require bootstrap-sprockets
 //= require cocoon
 //= require ckeditor/init

@@ -1,0 +1,22 @@
+.register
+  .container
+    h2
+      | Update Your Profile
+    .login-form-grids
+      = simple_form_for @user, html: { class: "form-horizontal" }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+        .form-inputs
+          = f.input :name
+          = f.input :email
+          = f.input :image , as: :file
+        .form-actions
+          = f.button :submit
+        /   .check
+        /     label.checkbox
+        /       input[type="checkbox" name="checkbox"]
+        /       i
+        / 
+        /       | I accept the terms and conditions
+        / input[type="submit" value="Register"]
+    .register-home
+      a[href="index.html"]
+        | Home

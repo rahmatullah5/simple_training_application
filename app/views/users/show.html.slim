@@ -1,0 +1,31 @@
+/ p#notice = notice
+/ 
+/ 
+/ = link_to 'Edit', edit_user_path(@user)
+/ '|
+/ = link_to 'Back', users_path
+.products
+  .container
+    .agileinfo_single
+      .col-md-4.agileinfo_single_left
+        img#example.img-responsive
+        - if @user.image_url.present?
+          = image_tag(@user.image_url(:thumb))
+        - else
+          | Please Upload Some Image
+      .col-md-8.agileinfo_single_right
+        h2
+        - if @user.name.present?
+          | Hi, 
+          = @user.name
+        - else
+          | Please Edit Your Profile
+        .w3agile_description
+          h4
+            | Email :
+          p
+            = @user.email
+        .w3agile_description
+          h4
+            = link_to("Edit Profile" , edit_user_path(@user.id))  
+      .clearfix
