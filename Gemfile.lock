@@ -150,6 +150,9 @@ GEM
       multi_json
     erubi (1.6.0)
     erubis (2.7.0)
+    exception_notification (4.2.1)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
     execjs (2.7.0)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
@@ -407,6 +410,7 @@ DEPENDENCIES
   elasticsearch
   elasticsearch-model
   elasticsearch-rails
+  exception_notification
   figaro
   friendly_id
   html2slim

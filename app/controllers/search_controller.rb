@@ -7,11 +7,9 @@ class SearchController < ApplicationController
     #   #@query = @query.result
     #   @q = params[:term]
     # end
-    if params[:term].nil?
-      @product = []
-    else
-      @product = Product.search(params[:term] , fields: [:name])
-    end
+    q = (params[:term].present? && params[:term]) || '*'
+    @product = Product.search(q , fields: [:name])
+
     # products.each do |product|
     #   puts product.name
     # end

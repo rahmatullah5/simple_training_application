@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do | exception |
     redirect_to root_url, alert: exception.message
   end
-    protected
+  protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
   end

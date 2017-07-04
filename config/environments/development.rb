@@ -52,8 +52,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  # config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
+  #config.action_mailer.delivery_method = :smtp
   # SMTP settings for mailgun
   ActionMailer::Base.smtp_settings = {
     :port           => 587,
@@ -84,4 +84,13 @@ Rails.application.configure do
     }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
+
+  ##Online Excepetion
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+    :email_prefix => "[PREFIX] ",
+    :sender_address => %{"notifier" <notifier@example.com>},
+    :exception_recipients => %w{rahmatthea5@gmail.com}
+  }
 end
