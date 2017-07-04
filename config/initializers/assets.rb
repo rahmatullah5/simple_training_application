@@ -12,6 +12,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile += %w(ckeditor/config.js , jquery-1.11.1.min.js , move-top.js , easing.js , bootstrap.css , bootstrap.min.js , minicart.min.js , skdslider.min.js , skdslider.css)
+Rails.application.config.assets.precompile += %w(ckeditor/* , ckeditor/config.js , jquery-1.11.1.min.js , move-top.js , easing.js , bootstrap.css , bootstrap.min.js , minicart.min.js , skdslider.min.js , skdslider.css)
 Rails.application.config.assets.precompile += %w(style.css )
 Rails.application.config.assets.precompile += %w(font-awesome.css )

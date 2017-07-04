@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       post 'express_checkout'
     end
   end
+  resources :orders do
+
+  end
   resources :line_items
   resources :carts
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -19,6 +22,8 @@ Rails.application.routes.draw do
   post "/hook" => "orders#hook"
   post "/orders/:id" => "orders#show"
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  get "search", to: "search#search"
+  get "users/profile/:id" , to: "users#show" , as: "profile_user_path"
   # devise_scope :user do
   #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   # end

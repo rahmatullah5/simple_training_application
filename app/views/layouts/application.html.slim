@@ -47,7 +47,7 @@ html lang="en"
               li
                 = link_to 'Logout', destroy_user_session_path, method: :delete
               li
-                = link_to 'Profile', user_path(current_user.id)
+                 = link_to 'Profile', profile_user_path_path(current_user.id)
             - else
               li
                 = link_to "Login" , new_user_session_path
@@ -75,11 +75,13 @@ html lang="en"
             a[href="index.html"]
               | super Market
         .w3l_search
-          form[action="#" method="post"]
-            input[type="search" name="Search" placeholder="Search for a Product..." required=""]
-            button.btn.btn-default.search[type="submit" aria-label="Left Align"]
+          = form_for :term, url: search_path, method: :get, html: { class: "form-horizontal" }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+            = text_field_tag :term ,  params[:term],  placeholder: "Search Product "
+            = submit_tag :search, input_html: {class: 'btn.btn-default.search' , value: "Search"}
+          / form[action="#" method="post"]
+          /   input[type="search" name="Search" placeholder="Search for a Product..." required=""]
+              button.btn.btn-default.search[type="submit" aria-label="Left Align"]
               i.fa.fa-search[aria-hidden="true"]
-
             .clearfix
         .clearfix
     .navigation-agileits
