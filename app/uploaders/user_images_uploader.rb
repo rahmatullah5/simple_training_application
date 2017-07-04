@@ -24,8 +24,9 @@ class UserImagesUploader < CarrierWave::Uploader::Base
     /image\//
   end
   #process resize_to_fit: [800, 800]
-  #process crop: :avatar
+  process crop: :image
   version :thumb do
+    process crop: :image
     process resize_to_fill: [150,150]
   end
 
@@ -37,10 +38,10 @@ class UserImagesUploader < CarrierWave::Uploader::Base
     resize_to_limit(600,600)
   end
 
-  version :thumb do
-    # process crop: :image  ## Crops this version based on original image
-    resize_to_limit(100,100)
-  end
+  # version :thumb do
+  #   # process crop: :image  ## Crops this version based on original image
+  #   resize_to_limit(100,100)
+  # end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
