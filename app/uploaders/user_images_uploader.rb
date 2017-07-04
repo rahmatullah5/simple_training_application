@@ -24,9 +24,9 @@ class UserImagesUploader < CarrierWave::Uploader::Base
     /image\//
   end
   #process resize_to_fit: [800, 800]
-  process crop: :image
+  # process crop: :image
   version :thumb do
-    process crop: :image
+    # process crop: :image
     process resize_to_fill: [150,150]
   end
 
