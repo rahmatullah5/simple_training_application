@@ -38,7 +38,7 @@ class UserImagesUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process crop: :image  ## Crops this version based on original image
+    # process crop: :image  ## Crops this version based on original image
     resize_to_limit(100,100)
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
