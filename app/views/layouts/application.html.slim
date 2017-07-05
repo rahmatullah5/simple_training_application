@@ -47,7 +47,7 @@ html lang="en"
               li
                 = link_to 'Logout', destroy_user_session_path, method: :delete
               li
-                 = link_to 'Profile', profile_user_path_path(current_user.id)
+                 = link_to 'Profile', profile_user_path(current_user.id)
             - else
               li
                 = link_to "Login" , new_user_session_path

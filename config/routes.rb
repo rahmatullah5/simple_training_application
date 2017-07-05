@@ -1,34 +1,34 @@
 Rails.application.routes.draw do
-  resources :orders
-  resources :users
-  resources :orders do
+  ActiveAdmin.routes(self)
+  require 'sidekiq/web'
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  mount Ckeditor::Engine => '/ckeditor'
+  mount Sidekiq::Web => '/sidekiq'
+
+  resources :line_items , :carts
+
+  resources :users do
+    get "profile" , to: "users#show" , on: :member
+  end
+  
+  resources :products do
+    member do
+      get 'checkout'
+    end
     collection do
-      post 'express_checkout'
+      get 'checkout_form'
     end
   end
-  resources :orders do
 
+  resources :orders do
+    post "/orders/:id" => "orders#show" , on: :member
+    collection do
+      post 'express_checkout'
+      post "/hook" => "orders#hook"
+    end
   end
-  resources :line_items
-  resources :carts
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-  #devise_for :users
-  mount Ckeditor::Engine => '/ckeditor'
-  resources :products
-  root to: "products#catalog"
-  get "checkout", to: "products#checkout"
-  get "checkout/form", to: "products#checkout_form"
-  post "/hook" => "orders#hook"
-  post "/orders/:id" => "orders#show"
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
   get "search", to: "search#search"
-  get "users/profile/:id" , to: "users#show" , as: "profile_user_path"
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
-  #get "login" , to: "devise/sessions##new" , as: "new_user_session_path"
-  # devise_scope :user do
-  #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-  # end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "products#catalog"
 end
