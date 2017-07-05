@@ -42,13 +42,13 @@ gem 'carrierwave-crop'
 
 gem 'devise'
 gem 'bcrypt', '~> 3.1.7'
-gem 'better_errors' #gem "binding_of_caller" More Advance
-gem 'pry-rails'
+
+
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-sass-extras'
 gem 'simple_form'
-gem 'letter_opener'
+
 gem 'slim-rails', '3.1.1'
 gem "cocoon"
 gem "mail"
@@ -88,6 +88,9 @@ gem 'searchkick'
 #exception
 gem 'exception_notification'
 
+#sidekiq
+gem 'sidekiq'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -99,13 +102,27 @@ group :development, :test do
 end
 
 group :development do
-
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
+  gem 'better_errors' #gem "binding_of_caller" More Advance
+  gem 'pry-rails'
+  gem 'letter_opener'
+  gem 'rack-mini-profiler', require: false
+  # For memory profiling (requires Ruby MRI 2.1+)
+  gem 'memory_profiler'
+  # For call-stack profiling flamegraphs (requires Ruby MRI 2.0.0+)
+  gem 'flamegraph'
+  gem 'stackprof'     # For Ruby MRI 2.1+
+  gem 'fast_stack'    # For Ruby MRI 2.0
+  gem 'rubycritic'
+  gem 'ruby_gntp'
+  gem 'ruby-growl'
+  gem 'xmpp4r' # xmp notifier
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

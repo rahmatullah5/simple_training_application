@@ -139,6 +139,8 @@
                     .snipcart-thumb
                       a[href="single.html"]
                         = image_tag(product.product_images[0].image_url(:thumb))
+                        / = image_tag(product)
+                        / = current_user.submissions.includes(:submission_details, :category => :award)
                       p
                         = product.name
                       h4

@@ -23,8 +23,8 @@ class ProductsController < ApplicationController
   def catalog
     #@cart = current_cart
     #@cart = Cart.find(session[:cart_id]) n
-        @user = current_user
-    @products = Product.all.page(params[:page])
+    @user = current_user
+    @products = Product.includes(:product_images).all.page(params[:page])
   end
 
   def checkout
