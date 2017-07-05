@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :orders
-  #resources :users
+  resources :users
   resources :orders do
     collection do
       post 'express_checkout'
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   get "search", to: "search#search"
   get "users/profile/:id" , to: "users#show" , as: "profile_user_path"
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   #get "login" , to: "devise/sessions##new" , as: "new_user_session_path"
   # devise_scope :user do
   #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session

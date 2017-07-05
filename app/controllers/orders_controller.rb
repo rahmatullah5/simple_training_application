@@ -12,7 +12,14 @@ class OrdersController < InheritedResources::Base
     # respond_to do |format|
     if @order.save
       # UserMailer.UserMailerView(@cart,@order)
-      UserMailer.UserMailerView(@order,@cart,current_user.email).deliver
+      begin
+        #UserMailer.UserMailerView(@order,@cart,current_user.email).deliver
+        HardWorker.perform_async(@order,@cart,current_user.email)
+      rescue => ex
+        logger.error ex.message
+        flash[:notice] = "Your Email Wasn't In Mailing List"
+      end
+
       redirect_to @order.paypal_url(@cart,@order,orders_path(@order))
       #redirect_to root_path
       # Cart.destroy(session[:cart_id])

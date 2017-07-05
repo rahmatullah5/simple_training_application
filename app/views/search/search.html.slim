@@ -1,22 +1,19 @@
-h1 Search Results for '
-= @q
-|'
 - if @product.empty?
-    p Your search did not match any documents.
-    / li
-    /   h3
-    /     = link_to product.try(:highlight).try(:name) ? product.highlight.title[0].html_safe : product.name, controller: "products", action: "show", id: product._id 
-    /   - if product.try(:highlight).try(:text) 
-    /       - product.highlight.text.each do |snippet| 
-    /   p 
-    /     = snippet.html_safe 
-    /     | ...    
+    br
+    h1 Your search did not match any documents.
+    br
 - else 
-  ul.search_results
-    - @product
-    - @product.each do |query| 
-      h3 
-        = query.name
-      p 
-        = query.price
-      br
+  br
+  h1 
+    | Search Results for '
+    = @q
+    |'
+  br
+    ul.search_results
+      - @product
+      - @product.each do |query| 
+        h3 
+          = query.name
+        p 
+          = query.price
+        br

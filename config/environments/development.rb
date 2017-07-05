@@ -64,6 +64,7 @@ Rails.application.configure do
     :authentication => :plain,
   }
   config.action_mailer.perform_deliveries = true
+  config.active_job.queue_adapter = :sidekiq
 
   # GMAIL
   # config.action_mailer.smtp_settings = {

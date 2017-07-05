@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   has_many :line_items, dependent: :destroy
   serialize :notification_params, Hash
   require 'money'
-  Money.add_rate("USD", "IDR", 13250)
+  Money.add_rate("USD", "IDR", 0.013250)
   def paypal_url(cart,order,return_path)
     @cart = cart
     @order = order

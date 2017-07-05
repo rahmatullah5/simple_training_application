@@ -99,6 +99,7 @@ Rails.application.configure do
     :authentication => :plain,
   }
 
+  config.active_job.queue_adapter = :sidekiq
 
   ##Online Excepetion
   Rails.application.config.middleware.use ExceptionNotification::Rack,

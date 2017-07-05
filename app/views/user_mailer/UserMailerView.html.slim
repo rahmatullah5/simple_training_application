@@ -38,52 +38,57 @@ html lang="en"
         .checkout
           .container
             h1
-              | Hi
-              = @order.name
-              | Your Order Will Be Sent To 
-              = @order.address
-              | We'll Contact You Soon on
-              = @order.telephone
-            br
-            h2
-              | Your shopping cart contains: 
-              span
-                - @i = 1
-                = @cart.total_product 
-                |  Product
-            .checkout-right
-              table.timetable_sub
-                thead
-                  tr
-                    th
-                      | No.
-                    th
-                      | Product Name
-                    th
-                      | Quantity
-                    th
-                      | Price
-                    th
-                      | Total Price
-                    
-                - @cart.line_items.each do |item|      
-                  tr.rem1
-                    td.invert
-                      = @i
-                      -  @i+=1
-                    td.invert-image
-                      b 
-                        = item.product.name
-                    td.invert
-                      .quantity
-                        .quantity-select
-                          .entry.value
-                            span
-                              = item.quantity 
-                    td.invert
-                       = number_to_currency(item.product.price , unit: "Rp. ")
-                    td.invert
-                       = number_to_currency(item.total_price , unit: "Rp. ")
-          
+              | Thanks For Order Our Product 
+              = @cart.class
+              = @order.class
+              = binding.pry
+              
+            /   | Hi
+            /   = @order.name
+            /   | Your Order Will Be Sent To 
+            /   = @order.address
+            /   | We'll Contact You Soon on
+            /   = @order.telephone
+            / br
+            / h2
+            /   | Your shopping cart contains: 
+            /   span
+            /     - @i = 1
+            /     / = @cart.total_product 
+            /     |  Product
+            / .checkout-right
+            /   table.timetable_sub
+            /     thead
+            /       tr
+            /         th
+            /           | No.
+            /         th
+            /           | Product Name
+            /         th
+            /           | Quantity
+            /         th
+            /           | Price
+            /         th
+            /           | Total Price
+            /         
+            /     - @cart.line_items.each do |item|      
+            /       tr.rem1
+            /         td.invert
+            /           = @i
+            /           -  @i+=1
+            /         td.invert-image
+            /           b 
+            /             = item.product.name
+            /         td.invert
+            /           .quantity
+            /             .quantity-select
+            /               .entry.value
+            /                 span
+            /                   = item.quantity 
+            /         td.invert
+            /           /  = number_to_currency(item.product.price , unit: "Rp. ")
+            /         td.invert
+            /           /  = number_to_currency(item.total_price , unit: "Rp. ")
+            / 
 
                     

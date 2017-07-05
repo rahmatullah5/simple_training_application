@@ -112,7 +112,7 @@ group :development do
   gem 'better_errors' #gem "binding_of_caller" More Advance
   gem 'pry-rails'
   gem 'letter_opener'
-  gem 'rack-mini-profiler', require: false
+  gem 'rack-mini-profiler'
   # For memory profiling (requires Ruby MRI 2.1+)
   gem 'memory_profiler'
   # For call-stack profiling flamegraphs (requires Ruby MRI 2.0.0+)

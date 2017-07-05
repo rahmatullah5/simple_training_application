@@ -1,3 +1,44 @@
 / ' User#UserMailerView
 / = "\r\n" * 2
-/ ' #{@greeting + ", find me in app/views/user_mailer/UserMailerView.text.slim"}
+/ ' #{greeting + ", find me in app/views/user_mailer/UserMailerView.text.slim"}
+h2
+  | Thanks For Order Our Product
+/   span
+/     - i = 1
+/     / = cart.total_product
+/     |  Product
+/ .checkout-right
+/   table.timetable_sub
+/     thead
+/       tr
+/         th
+/           | No.
+/         th
+/           | Product Name
+/         th
+/           | Quantity
+/         th
+/           | Price
+/         th
+/           | Total Price
+/     - cart.line_items.each do |item|      
+/       tr.rem1
+/         td.invert
+/           = i
+/           -  i+=1
+/         td.invert-image
+/           b 
+/             = item.product.name
+/         td.invert
+/           .quantity
+/             .quantity-select
+/               .entry.value
+/                 span
+/                   = item.quantity 
+/         td.invert
+/           /  = number_to_currency(item.product.price , unit: "Rp. ")
+/         td.invert
+/           /  = number_to_currency(item.total_price , unit: "Rp. ")
+
+
+        
