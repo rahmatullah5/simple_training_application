@@ -7,6 +7,7 @@ class User < ApplicationRecord
   mount_uploader :image, UserImagesUploader
   crop_uploaded :image
   ROLES = %i[basic seller suspend banned]
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -19,6 +20,7 @@ class User < ApplicationRecord
       #user.save!
     end
   end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users do
     get "profile" , to: "users#show" , on: :member
   end
-  
+
   resources :products do
     member do
       get 'checkout'

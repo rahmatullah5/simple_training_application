@@ -1,34 +1,3 @@
-/ h1 Listing orders
-/ 
-/ table
-/   thead
-/     tr
-/       th Name
-/       th Address
-/       th Email
-/       th Telephone
-/       th User
-/       th Cart
-/       th
-/       th
-/       th
-/ 
-/   tbody
-/     - @orders.each do |order|
-/       tr
-/         td = order.name
-/         td = order.address
-/         td = order.email
-/         td = order.telephone
-/         td = order.user
-/         td = order.cart
-/         td = link_to 'Show', order
-/         td = link_to 'Edit', edit_order_path(order)
-/         td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete
-/ 
-/ br
-/ 
-/ = link_to 'New Order', new_order_path
 .checkout
   .container
     h2
@@ -53,7 +22,7 @@
               | Total Price
             th
               | Remove
-        - @cart.line_items.each do |item|      
+        - @line_items.each do |item|      
           tr.rem1
             td.invert
               = @i

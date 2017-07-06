@@ -1,16 +1,17 @@
+br
 - if @product.empty?
-    br
-    h1 Your search did not match any documents.
+    h1 
+      | Search Results for '
+      = @q
+      |' did not match any documents.
     br
 - else 
-  br
   h1 
     | Search Results for '
     = @q
     |'
   br
     ul.search_results
-      - @product
       - @product.each do |query| 
         h3 
           = query.name

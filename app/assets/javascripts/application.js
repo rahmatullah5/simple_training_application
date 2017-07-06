@@ -14,7 +14,6 @@
 //= require easing
 //= require move-top
 //= require skdslider.min
-//= require bootstrap.min
 //= require minicart.min
 //= require responsiveslides.min
 //= require turbolinks
@@ -22,4 +21,3 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require ckeditor/init
-//= require_tree .

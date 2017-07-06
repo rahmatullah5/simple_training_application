@@ -10,10 +10,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
- *= style.css
- *= skdslider.css
+ *= require active_admin
+ *= require skdslider
  *= require jquery.jcrop
- *= btp
+ *= require btp
+ *= require bootstrap
+ *= require style
+ *= require carts
+ *= require line_items
+ *= require omniauth_callbacks
+
+
  */

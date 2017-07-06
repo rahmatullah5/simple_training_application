@@ -1,69 +1,3 @@
-
-/ .row
-/     .col-md-3
-/       p.lead Shop Name
-/       .list-group
-/         a.list-group-item href="#"  Category 1
-/         a.list-group-item href="#"  Category 2
-/         a.list-group-item href="#"  Category 3
-/     .col-md-9
-/       .row.carousel-holder
-/         .col-md-12
-/           #carousel-example-generic.carousel.slide data-ride="carousel" 
-/             ol.carousel-indicators
-/               li.active data-slide-to="0" data-target="#carousel-example-generic" 
-/               li data-slide-to="1" data-target="#carousel-example-generic" 
-/               li data-slide-to="2" data-target="#carousel-example-generic" 
-/             .carousel-inner
-/               .item.active
-/                 img.slide-image alt="" src="http://placehold.it/800x300" /
-/               .item
-/                 img.slide-image alt="" src="http://placehold.it/800x300" /
-/               .item
-/                 img.slide-image alt="" src="http://placehold.it/800x300" /
-/             a.left.carousel-control data-slide="prev" href="#carousel-example-generic" 
-/               span.glyphicon.glyphicon-chevron-left
-/             a.right.carousel-control data-slide="next" href="#carousel-example-generic" 
-/               span.glyphicon.glyphicon-chevron-right
-/       .row
-/       br
-/       - @products.each do |product|
-/         .col-sm-4.col-lg-4.col-md-4
-/           .thumbnail
-/             - product.product_images.each do |x|
-/               = image_tag (x.image_url(:thumb))
-/               - break
-/             .caption
-/               h4.pull-right = "$ #{product.id}"
-/                 / | $  
-/                 / = product.id
-/                 / | Test
-/               h4
-/                 = product.name
-/               p
-/               td= product.id
-/               td= product.name
-/               td= product.description
-/               td= product.price
-/               td=l product.created_at, format: :long
-/                 | See more snippets like this online store item at
-/         
-/                   
-/             .ratings
-/               p.pull-right 15 reviews
-/               p
-/                 span.glyphicon.glyphicon-star
-/                 span.glyphicon.glyphicon-star
-/                 span.glyphicon.glyphicon-star
-/                 span.glyphicon.glyphicon-star
-/                 span.glyphicon.glyphicon-star
-/                      
-/ /! /.container
-/ .container
-/   .row
-/     center
-/       = paginate @products
-/   hr
 .products
   .container
     .col-md-4.products-left
@@ -79,7 +13,7 @@
                 .col-md-6
                    h4 Quantity
               - i=1      
-              - @cart.line_items.each do |item|
+              - @line_items.each do |item|
                 .row 
                   .col-md-6
                      h4 
@@ -98,7 +32,7 @@
                    = number_to_currency(@cart.total_price , unit: "Rp. ")
                 .col-md-4
                    h4 
-                   = @cart.total_product 
+                   = @cart.total_product
                    |  Product    
             li
               .row
@@ -139,57 +73,15 @@
                     .snipcart-thumb
                       a[href="single.html"]
                         = image_tag(product.product_images[0].image_url(:thumb))
-                        / = image_tag(product)
-                        / = current_user.submissions.includes(:submission_details, :category => :award)
                       p
                         = product.name
                       h4
                         = number_to_currency(product.price , unit: "Rp. ")
-                        / span
-                        /   | $45.00
                     .snipcart-details.top_brand_home_details
                       = button_to 'Add to Cart', line_items_path(product_id: product) 
-                      / form[action="#" method="post"]
-                      /   fieldset
-                      /     input[type="hidden" name="cmd" value="_cart"]
-                      /     input[type="hidden" name="add" value="1"]
-                      /     input[type="hidden" name="business" value=" "]
-                      /     input[type="hidden" name="item_name" value="basmati rise"]
-                      /     input[type="hidden" name="amount" value="30.99"]
-                      /     input[type="hidden" name="discount_amount" value="1.00"]
-                      /     input[type="hidden" name="currency_code" value="USD"]
-                      /     input[type="hidden" name="return" value=" "]
-                      /     input[type="hidden" name="cancel_return" value=" "]
-                      /     input.button[type="submit" name="submit" value="Add to cart"]
       .agile_top_brands_grids
       - @products.each do |product|    
         .col-md-4.top_brand_left
         .clearfix  
       nav.numbering
         = paginate @products
-        / ul.pagination.paging
-        /   li
-        /     a[href="#" aria-label="Previous"]
-        /       span[aria-hidden="true"]
-        /         | «
-        /   li.active
-        /     a[href="#"]
-        /       | 1
-        /       span.sr-only
-        /         | (current)
-        /   li
-        /     a[href="#"]
-        /       | 2
-        /   li
-        /     a[href="#"]
-        /       | 3
-        /   li
-        /     a[href="#"]
-        /       | 4
-        /   li
-        /     a[href="#"]
-        /       | 5
-        /   li
-        /     a[href="#" aria-label="Next"]
-        /       span[aria-hidden="true"]
-        /         | »

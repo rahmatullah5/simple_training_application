@@ -2,51 +2,24 @@ class OrdersController < InheritedResources::Base
   include CurrentCart
   before_action :set_cart
   before_action :ensure_cart_isnt_empty, only: :new
-  before_action :authenticate_user!,
+  before_action :authenticate_user!
+  protect_from_forgery except: [:hook]
 
   def index
+    @line_items = @cart.line_items.includes(:product , product: [:product_images])
   end
+
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
-    # respond_to do |format|
     if @order.save
-      # UserMailer.UserMailerView(@cart,@order)
-      begin
-        #UserMailer.UserMailerView(@order,@cart,current_user.email).deliver
-        HardWorker.perform_async(@order,@cart,current_user.email)
-      rescue => ex
-        logger.error ex.message
-        flash[:notice] = "Your Email Wasn't In Mailing List"
-      end
-
+      send_user_notifcation(@order,@cart,current_user.email)
       redirect_to @order.paypal_url(@cart,@order,orders_path(@order))
-      #redirect_to root_path
-      # Cart.destroy(session[:cart_id])
-      # session[:cart_id] = nil
-      # format.html { redirect_to root_path, notice:
-      # 'Thank you for your orde Please Check Your Email.' }
-      # format.json { render :show, status: :created,
-      # location: @order }
     else
-      # format.html { render :new }
-      # format.json { render json: @order.errors,
-      # status: :unprocessable_entity }
+      render :new
     end
-    # end
   end
-  def express_checkout
-    response = EXPRESS_GATEWAY.setup_purchase(YOUR_TOTAL_AMOUNT_IN_CENTS,
-      ip: request.remote_ip,
-      return_url: YOUR_RETURN_URL_,
-      cancel_return_url: YOUR_CANCEL_RETURL_URL,
-      currency: "USD",
-      allow_guest_checkout: true,
-      items: [{name: "Order", description: "Order description", quantity: "1", amount: AMOUNT_IN_CENTS}]
-    )
-    redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
-  end
-  protect_from_forgery except: [:hook]
+
   def hook
     params.permit! # Permit all Paypal input params
     status = params[:payment_status]
@@ -56,7 +29,12 @@ class OrdersController < InheritedResources::Base
     end
     render nothing: true
   end
+
   private
+  def send_user_notifcation(order,cart,email)
+    HardWorker.perform_async(order,cart,email)
+  end
+
   def ensure_cart_isnt_empty
     if @cart.line_items.empty?
       redirect_to root_path, notice: 'Your cart is empty'
